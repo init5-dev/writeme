@@ -1,0 +1,78 @@
+{
+  "name": "writeme",
+  "displayName": "writeme",
+  "description": "Writeme es una extensión para Visual Studio Code pensada para escritores y amantes de la literatura. Utilizando la potencia de Gemini AI, Writeme te ayuda a generar, editar y mejorar textos literarios directamente desde tu editor.",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.54.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:writeme.insertText",
+    "onCommand:writeme.editText",
+    "onCommand:writeme.improveDialog",
+    "onCommand:writeme.shiftStyle",
+    "onCommand:writeme.paraphrase",
+    "onCommand:writeme.expand"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "writeme.insertText",
+        "title": "Writeme: Escribir texto aquí..."
+      },
+      {
+        "command": "writeme.editText",
+        "title": "Writeme: Editar texto hasta aquí..."
+      },
+      {
+        "command": "writeme.improveDialog",
+        "title": "Writeme: Mejorar diálogos"
+      },
+      {
+        "command": "writeme.shiftStyle",
+        "title": "Writeme: Cambiar estilo"
+      },
+      {
+        "command": "writeme.paraphrase",
+        "title": "Writeme: Paráfrasis"
+      },
+      {
+        "command": "writeme.expand",
+        "title": "Writeme: Expandir texto"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Configuración de Writeme",
+      "properties": {
+        "writeme.apiKey": {
+          "type": "string",
+          "title": "API Key",
+          "default": "",
+          "description": "Ingresa tu clave de API de Google Gemini"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "pnpm run lint",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.54.0",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1",
+    "eslint": "^9.19.0"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.21.0",
+    "axios": "^1.7.9"
+  }
+}
