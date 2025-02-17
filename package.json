@@ -1,5 +1,5 @@
 {
-  "name": "writeme",
+  "name": "@init5-dev/writeme",
   "displayName": "writeme",
   "description": "Writeme es una extensión para Visual Studio Code pensada para escritores y amantes de la literatura. Utilizando la potencia de Gemini AI, Writeme te ayuda a generar, editar y mejorar textos literarios directamente desde tu editor.",
   "version": "1.0.0",
