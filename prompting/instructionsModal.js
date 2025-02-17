@@ -17,12 +17,50 @@ async function instructionsModal(
     return;
   }
 
+  // Obtener la configuración del usuario
+  const config = vscode.workspace.getConfiguration("writeme");
+  const defaultInstructions = {
+    insertText: config.get("insertText", ""),
+    improveDialogue: config.get("improveDialogue", ""),
+    expand: config.get("expand", ""),
+    editText: config.get("editText", ""),
+    paraphrase: config.get("paraphrase", ""),
+    shiftStyle: config.get("shiftStyle", ""),
+  };
+
+  // Determinar las instrucciones predeterminadas según el tipo de instrucción
+  let defaultInstructionValue = "";
+  switch (type) {
+    case InstructionType.Insertion:
+      defaultInstructionValue = defaultInstructions.insertText;
+      break;
+    case InstructionType.DialogueImprovement:
+      defaultInstructionValue = defaultInstructions.improveDialogue;
+      break;
+    case InstructionType.Expansion:
+      defaultInstructionValue = defaultInstructions.expand;
+      break;
+    case InstructionType.Edition:
+      defaultInstructionValue = defaultInstructions.editText;
+      break;
+    case InstructionType.Paraphrasing:
+      defaultInstructionValue = defaultInstructions.paraphrase;
+      break;
+    case InstructionType.StyleShift:
+      defaultInstructionValue = defaultInstructions.shiftStyle;
+      break;
+    default:
+      defaultInstructionValue = "";
+  }
+
   // Solicitar al usuario las instrucciones adicionales
   const userInput = await vscode.window.showInputBox({
     prompt: inputBoxConfig?.prompt || "¡Dale instrucciones a Gemini!",
     placeHolder:
       inputBoxConfig?.placeHolder || "Por ejemplo: Resume el texto anterior...",
+    value: defaultInstructionValue, // Usar las instrucciones predeterminadas del usuario
   });
+
   if (userInput === undefined) {
     vscode.window.showWarningMessage("No se ingresó ningún prompt.");
     return;
@@ -74,7 +112,6 @@ async function instructionsModal(
       if (response) {
         await activeEditor.edit((editBuilder) => {
           const config = promptTypesConfig[type];
-
           if (insertionMode === "selection") {
             // Modo: trabajar con el texto seleccionado
             editBuilder.replace(selection, response);

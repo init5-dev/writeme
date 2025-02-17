@@ -1,14 +1,19 @@
 {
   "name": "writeme",
   "displayName": "writeme",
+  "author": "Nelson Ochagavía",
   "description": "Writeme es una extensión para Visual Studio Code pensada para escritores y amantes de la literatura. Utilizando la potencia de Gemini AI, Writeme te ayuda a generar, editar y mejorar textos literarios directamente desde tu editor.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "engines": {
     "vscode": "^1.54.0"
   },
   "categories": [
     "Other"
   ],
+  "repository": {
+  "type": "git",
+  "url": "https://github.com/init5-dev/writeme.git"
+},
   "activationEvents": [
     "onCommand:writeme.insertText",
     "onCommand:writeme.editText",
@@ -53,7 +58,43 @@
           "type": "string",
           "title": "API Key",
           "default": "",
-          "description": "Ingresa tu clave de API de Google Gemini"
+          "description": "Ingresa tu clave de API de Google Gemini."
+        },
+        "writeme.insertText": {
+          "type": "string",
+          "title": "Especificaciones predeterminadas de escritura",
+          "default": "",
+          "description": "Inserta las especificaciones predeterminadas de escritura. P. ej. 'Escribe con el estilo de Hemingway, la suavidad de Ray Bradbury y la intensidad de Virginia Woolf'."
+        },
+        "writeme.improveDialogue": {
+          "type": "string",
+          "title": "Mejorar diálogo",
+          "default": "",
+          "description": "Escribe las especificaciones para mejorar diálogos. P. ej. 'Que los diálogos sean más naturales y fluidos'."
+        },
+        "writeme.expand": {
+          "type": "string",
+          "title": "Expandir idea",
+          "default": "",
+          "description": "Escribe las especificaciones para expandir ideas. P. ej. 'Añade detalles relevantes y profundiza en el tema'."
+        },
+        "writeme.editText": {
+          "type": "string",
+          "title": "Editar texto",
+          "default": "",
+          "description": "Escribe las especificaciones para editar texto. P. ej. 'Corrige errores gramaticales y mejora la claridad'."
+        },
+        "writeme.paraphrase": {
+          "type": "string",
+          "title": "Reescribir",
+          "default": "",
+          "description": "Escribe las especificaciones para reescribir texto. P. ej. 'Reescribe manteniendo el significado original pero con un tono más formal'."
+        },
+        "writeme.shiftStyle": {
+          "type": "string",
+          "title": "Cambiar estilo",
+          "default": "",
+          "description": "Escribe las especificaciones para cambiar el estilo del texto. P. ej. 'Cambia el estilo a uno más creativo y poético'."
         }
       }
     }
